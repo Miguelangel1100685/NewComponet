@@ -1,17 +1,27 @@
-import { ProductCardProps } from '@/app/interfaces/productCards.interfaces';
-import React from 'react';
+"use client";
 
-const ProductCard = ({ product }: ProductCardProps) => {
+import React from "react";
+
+interface Product {
+  id: string;
+  name: string;
+  descriptions: string;
+  image: string;
+  price: number;
+}
+
+interface ProductCardProps {
+  product: Product;
+  onClick: () => void;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
   return (
-    <div className="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden md:max-w-xs">
-      <img className="w-full h-48 object-cover" src={product.image} alt={product.name} />
-      <div className="p-4">
-        <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
-        <p className="text-gray-600 mt-2">{product.descriptions}</p>
-        {product.price && (
-          <p className="text-green-500 font-bold text-lg mt-4">${product.price.toFixed(2)}</p>
-        )}
-      </div>
+    <div onClick={onClick} className="hover:scale-105 transition-all cursor-pointer p-4 border rounded shadow-md">
+      <img src={product.image} alt={product.name} className="w-full h-auto" />
+      <h3>{product.name}</h3>
+      <p>{product.descriptions}</p>
+      <p>${product.price}</p>
     </div>
   );
 };
