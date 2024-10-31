@@ -1,1 +1,1 @@
-# NewComponet
+# NewComponent
